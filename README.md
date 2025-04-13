@@ -1,73 +1,52 @@
-# Welcome to your Lovable project
+# Smart Trawl Gear Uplifting System Dashboard 🌊
 
-## Project info
+A real-time, responsive web dashboard for monitoring and controlling trawl gear during fishing operations. Designed to enhance gear safety, optimize seabed interaction, and enable smart automation using sensor and GPS data.
 
-**URL**: https://lovable.dev/projects/e3c7d355-9b99-4e0d-a23f-344a4cbeb099
+![Dashboard Preview](./screenshot.png) <!-- Replace with actual image path if available -->
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚀 Features
 
-**Use Lovable**
+- 🎯 **Real-Time Monitoring**
+  - Continuous seabed distance tracking with gyroscopic corrections
+  - Live sensor data via MQTT/WebSocket
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e3c7d355-9b99-4e0d-a23f-344a4cbeb099) and start prompting.
+- 🧠 **Smart Automation**
+  - Autonomous gear lifting when seabed distance < 1.0m
+  - Manual override via interactive UI controls
 
-Changes made via Lovable will be committed automatically to this repo.
+- 📊 **Animated Visualizations**
+  - Dynamic trawl net and boat animation
+  - Color-coded seabed proximity (Red: Danger, Yellow: Caution, Green: Safe)
 
-**Use your preferred IDE**
+- 🗺️ **GPS & Mapping**
+  - Real-time boat tracking with Leaflet.js
+  - Depth overlays and historical movement trails
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- 🚨 **Alert System**
+  - Warnings for proximity breaches and maintenance schedules
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 🧱 Software Stack
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+| Layer          | Technologies Used                                                                 |
+|----------------|-------------------------------------------------------------------------------------|
+| **Frontend**   | React.js (v18), Tailwind CSS (v3), ShadCN UI, Framer Motion, React Konva, Leaflet.js |
+| **Comm. Layer**| MQTT.js, WebSocket, Mosquitto MQTT Broker                                          |
+| **Backend**    | Node.js, Firebase Realtime Database & Hosting (AWS DynamoDB as alternative)        |
+| **Visualization** | Canvas API, SVG Graphics                                                       |
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 📐 System Architecture
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/e3c7d355-9b99-4e0d-a23f-344a4cbeb099) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+```mermaid
+graph TD
+  A[Sensor Data (Distance, GPS, Gyro)] --> B[MQTT/WebSocket Listener]
+  B --> C[Logic Evaluation (Thresholds)]
+  C --> D[UI Rendering (Boat, Net, Labels)]
+  C --> E[Alert System (Warnings, Maintenance)]
+  D --> F[User Interface (Manual Input)]
+  F --> G[MCU/Winch Control]
